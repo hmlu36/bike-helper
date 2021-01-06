@@ -11,14 +11,14 @@ const cron = require('node-cron');
 const lineNotify = require('./lineNotify');
 
 
-cron.schedule('0 50 9 * * *', () => {
+cron.schedule('0 50 9 * * *', (context) => {
   const url = lineNotify.getAuthLink('notify');
   context.sendText(url);
 });
 
 
 
-module.exports = function App(context) {
+module.exports = async function App(context) {
   return router([
     text(/雷達.*$/i, RadarEcho),
     text(/^AQI.*$/i, AQI),
@@ -27,8 +27,8 @@ module.exports = function App(context) {
     text(/^溫度.*$/i, Temperature),
     text(/^(UVI|紫外線).*$/i, UVI),
     text(/^預報.*$/i, Forecast),
-    text(/^.*$/i, context => {
-      context.sendText(context.event.text);
+    text(/^.*$/i, (context) => {
+      await context.sendText(context.event.text);
     }) // echo
   ]);
 };
