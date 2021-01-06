@@ -17,9 +17,6 @@ cron.schedule('0 50 9 * * *', (context) => {
 });
 
 
-async function FallbackResponse(context) {
-  await context.sendText('test');
-}
 
 
 module.exports = async function App() {
@@ -31,6 +28,5 @@ module.exports = async function App() {
     text(/^溫度.*$/i, Temperature),
     text(/^(UVI|紫外線).*$/i, UVI),
     text(/^預報.*$/i, Forecast),
-    text(/^.*$/i, FallbackResponse) // echo
   ]);
 };
