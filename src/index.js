@@ -17,6 +17,10 @@ cron.schedule('0 50 9 * * *', (context) => {
 });
 
 
+async function FallbackResponse(context) {
+  await context.sendText(context.event.text);
+}
+
 
 module.exports = async function App(context) {
   return router([
@@ -27,8 +31,6 @@ module.exports = async function App(context) {
     text(/^溫度.*$/i, Temperature),
     text(/^(UVI|紫外線).*$/i, UVI),
     text(/^預報.*$/i, Forecast),
-    text(/^.*$/i, (context) => {
-      await context.sendText(context.event.text);
-    }) // echo
+    text(/^.*$/i, FallbackResponse) // echo
   ]);
 };
