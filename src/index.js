@@ -22,7 +22,7 @@ async function FallbackResponse(context) {
 }
 
 
-module.exports = async function App(context) {
+module.exports = async function App() {
   return router([
     text(/雷達.*$/i, RadarEcho),
     text(/^AQI.*$/i, AQI),
