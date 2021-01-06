@@ -1,10 +1,8 @@
 name: Deploy
-
 on:
   push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,4 +14,3 @@ jobs:
           heroku_app_name: "bike-helper"
           heroku_email: "hmlu36@gmail.com"
           usedocker: false
-          
