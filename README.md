@@ -11,3 +11,6 @@ npx bottender dev --console
 
 ## 強制清除cache
 npm cache clear --force
+
+#github deploy to heroku
+https://shashanksrivastava.medium.com/use-github-actions-to-automatically-deploy-your-applications-to-heroku-566ff0637ffb
