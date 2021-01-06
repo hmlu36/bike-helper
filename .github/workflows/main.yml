@@ -1,7 +1,9 @@
-name: Deployon:
+name: Deploy
+on:
   push:
     branches:
-      - masterjobs:
+      - main
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
