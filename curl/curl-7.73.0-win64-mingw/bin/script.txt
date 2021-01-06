@@ -1,0 +1,134 @@
+    Image format: JPEG or PNG
+    Image width size (pixels): 800 to 2500
+    Image height size (pixels): 250 or more
+    Image aspect ratio (width/height): 1.45 or more
+    Max file size: 1 MB
+
+
+-- 新增選單
+curl -v -X POST https://api.line.me/v2/bot/richmenu ^
+-H "Authorization: Bearer GD+7fBlgP582oylpMGAGqq9UbJzNTqyMfOW7okUGHa/rPKNkNNJT68cW1aQEGkJjUQs/eTm1X3oLJGOg5fsFv1PRGQfh5NabDcb1r3Af2o57qfxpXAICkiYCPCWAKDhwhmgkF574E4au44Pc5fTgPQdB04t89/1O/w1cDnyilFU" ^
+-H "Content-Type:application/json" ^
+-d "{\"size\":{\"width\":2500,\"height\":1686},\"selected\":false,\"name\":\"richmenu\",\"chatBarText\": \"點選開啟選單\",\"areas\":[{\"bounds\":{\"x\":0,\"y\":0,\"width\":833,\"height\":843},\"action\":{\"type\":\"message\",\"label\":\"溫度\",\"text\":\"溫度\"}},{\"bounds\":{\"x\":833,\"y\":0,\"width\":833,\"height\":843},\"action\":{\"type\":\"message\",\"label\":\"衛星\",\"text\":\"衛星\"}},{\"bounds\":{\"x\":1666,\"y\":0,\"width\":833,\"height\":843},\"action\":{\"type\":\"message\",\"label\":\"紫外線\",\"text\":\"紫外線\"}},{\"bounds\":{\"x\":0,\"y\":843,\"width\":833,\"height\":843},\"action\":{\"type\":\"message\",\"label\":\"雨量\",\"text\":\"雨量\"}},{\"bounds\":{\"x\":833,\"y\":843,\"width\":833,\"height\":843},\"action\":{\"type\":\"message\",\"label\":\"雷達迴波\",\"text\":\"雷達\"}},{\"bounds\":{\"x\":1666,\"y\":843,\"width\":833,\"height\":843},\"action\":{\"type\":\"message\",\"label\":\"AQI\",\"text\":\"AQI\"}}]}"
+
+
+-- 上傳圖檔
+curl -v -X POST https://api.line.me/v2/bot/richmenu/richmenu-ff8353aeb78e0a906a8e239c75642a9d/content ^
+-H "Authorization: Bearer GD+7fBlgP582oylpMGAGqq9UbJzNTqyMfOW7okUGHa/rPKNkNNJT68cW1aQEGkJjUQs/eTm1X3oLJGOg5fsFv1PRGQfh5NabDcb1r3Af2o57qfxpXAICkiYCPCWAKDhwhmgkF574E4au44Pc5fTgPQdB04t89/1O/w1cDnyilFU" ^
+-H "Content-Type: image/png" ^
+-T menu.jpg
+
+
+-- 設定為default
+curl -v -X POST https://api.line.me/v2/bot/user/all/richmenu/richmenu-ff8353aeb78e0a906a8e239c75642a9d/content ^
+-H "Authorization: Bearer GD+7fBlgP582oylpMGAGqq9UbJzNTqyMfOW7okUGHa/rPKNkNNJT68cW1aQEGkJjUQs/eTm1X3oLJGOg5fsFv1PRGQfh5NabDcb1r3Af2o57qfxpXAICkiYCPCWAKDhwhmgkF574E4au44Pc5fTgPQdB04t89/1O/w1cDnyilFU" 
+
+curl -v -X POST https://api.line.me/v2/bot/user/all/richmenu/richmenu-ff8353aeb78e0a906a8e239c75642a9d ^
+-H "Authorization: Bearer GD+7fBlgP582oylpMGAGqq9UbJzNTqyMfOW7okUGHa/rPKNkNNJT68cW1aQEGkJjUQs/eTm1X3oLJGOg5fsFv1PRGQfh5NabDcb1r3Af2o57qfxpXAICkiYCPCWAKDhwhmgkF574E4au44Pc5fTgPQdB04t89/1O/w1cDnyilFU" 
+
+
+-- 取得menu清單
+curl -v -X Get https://api.line.me/v2/bot/richmenu/list ^
+-H "Authorization: Bearer GD+7fBlgP582oylpMGAGqq9UbJzNTqyMfOW7okUGHa/rPKNkNNJT68cW1aQEGkJjUQs/eTm1X3oLJGOg5fsFv1PRGQfh5NabDcb1r3Af2o57qfxpXAICkiYCPCWAKDhwhmgkF574E4au44Pc5fTgPQdB04t89/1O/w1cDnyilFU" 
+
+
+-- 刪除選單
+curl -v -X DELETE https://api.line.me/v2/bot/richmenu/richmenu-ff8353aeb78e0a906a8e239c75642a9d ^
+-H "Authorization: Bearer GD+7fBlgP582oylpMGAGqq9UbJzNTqyMfOW7okUGHa/rPKNkNNJT68cW1aQEGkJjUQs/eTm1X3oLJGOg5fsFv1PRGQfh5NabDcb1r3Af2o57qfxpXAICkiYCPCWAKDhwhmgkF574E4au44Pc5fTgPQdB04t89/1O/w1cDnyilFU" 
+
+
+-- 查看圖文選單
+curl -v -X Get https://api.line.me/v2/bot/richmenu/richmenu-ff8353aeb78e0a906a8e239c75642a9d ^
+-H "Authorization: Bearer GD+7fBlgP582oylpMGAGqq9UbJzNTqyMfOW7okUGHa/rPKNkNNJT68cW1aQEGkJjUQs/eTm1X3oLJGOg5fsFv1PRGQfh5NabDcb1r3Af2o57qfxpXAICkiYCPCWAKDhwhmgkF574E4au44Pc5fTgPQdB04t89/1O/w1cDnyilFU" 
+
+
+
+{
+    'size': {
+      'width': 2500,
+      'height': 1686
+    },
+    'selected': false,
+    'name': 'richmenu',
+	'chatBarText': '點選開啟選單'
+    'areas': [
+      {
+        'bounds': {
+          'x': 0,
+          'y': 0,
+          'width': 833,
+          'height': 843
+        },
+        'action': {
+          'type': 'message',
+          'label': '溫度',
+          'text': '溫度'
+        }
+      },
+      {
+        'bounds': {
+          'x': 833,
+          'y': 0,
+          'width': 833,
+          'height': 843
+        },
+        'action': {
+          'type': 'message',
+          'label': '衛星',
+          'text': '衛星'
+        }
+      },
+      {
+        'bounds': {
+          'x': 1666,
+          'y': 0,
+          'width': 833,
+          'height': 843
+        },
+        'action': {
+          'type': 'message',
+          'label': '紫外線',
+          'text': '紫外線'
+        }
+      },
+      {
+        'bounds': {
+          'x': 0,
+          'y': 843,
+          'width': 833,
+          'height': 843
+        },
+        'action': {
+          'type': 'message',
+          'label': '雨量',
+          'text': '雨量'
+        }
+      },
+      {
+        'bounds': {
+          'x': 833,
+          'y': 843,
+          'width': 833,
+          'height': 843
+        },
+        'action': {
+          'type': 'message',
+          'label': '雷達迴波',
+          'text': '雷達'
+        }
+      },
+      {
+        'bounds': {
+          'x': 1666,
+          'y': 843,
+          'width': 833,
+          'height': 843
+        },
+        'action': {
+          'type': 'message',
+          'label': 'AQI',
+          'text': 'AQI'
+        }
+      }
+   ]
+}
