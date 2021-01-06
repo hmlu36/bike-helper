@@ -18,7 +18,7 @@ cron.schedule('0 50 9 * * *', (context) => {
 
 
 
-module.exports = async function App() {
+module.exports = function App(context) {
   return router([
     text(/雷達.*$/i, RadarEcho),
     text(/^AQI.*$/i, AQI),
