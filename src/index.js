@@ -11,7 +11,7 @@ const cron = require('node-cron');
 const lineNotify = require('./lineNotify');
 
 
-cron.schedule('0 50 9 * * *', (context) => {
+cron.schedule('0 50 9 * * *', () => {
   const url = lineNotify.getAuthLink('notify');
   context.sendText(url);
 });
@@ -27,7 +27,7 @@ module.exports = function App(context) {
     text(/^溫度.*$/i, Temperature),
     text(/^(UVI|紫外線).*$/i, UVI),
     text(/^預報.*$/i, Forecast),
-    text(/^.*$/i, (context) => {
+    text(/^.*$/i, () => {
       context.sendText(context.event.text);
     }) // echo
   ]);

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "debug": "npx bottender start --console",
     "dev": "bottender dev",
     "lint": "eslint . ",
     "start": "bottender start",
