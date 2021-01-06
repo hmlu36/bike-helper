@@ -18,7 +18,7 @@ cron.schedule('0 50 9 * * *', (context) => {
 
 
 
-module.exports = async function App(context) {
+module.exports = function App(context) {
   return router([
     text(/雷達.*$/i, RadarEcho),
     text(/^AQI.*$/i, AQI),
@@ -28,7 +28,7 @@ module.exports = async function App(context) {
     text(/^(UVI|紫外線).*$/i, UVI),
     text(/^預報.*$/i, Forecast),
     text('*', (context) => {
-      await context.sendText(context.event.text);
+      context.sendText(context.event.text);
     }) // echo
   ]);
 };
