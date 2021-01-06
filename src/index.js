@@ -18,7 +18,7 @@ cron.schedule('0 50 9 * * *', (context) => {
 
 
 async function FallbackResponse(context) {
-  await context.sendText(context.event.text);
+  await context.sendText('test');
 }
 
 
