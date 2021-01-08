@@ -26,7 +26,7 @@ module.exports = function App(context) {
     text(/^衛星.*$/i, Satellite),
     text(/^溫度.*$/i, Temperature),
     text(/^(UVI|紫外線).*$/i, UVI),
-    text(/^預報.*$/i, Forecast),
+    text(/^([天氣]?)預報.*$/i, Forecast),
     text(/^.*$/i, () => {
       context.sendText(context.event.text);
     })
