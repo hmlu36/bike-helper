@@ -20,7 +20,7 @@ cron.schedule('0 50 9 * * *', (context) => {
 
 module.exports = function App(context) {
   return router([
-    text(/雷達.*$/i, RadarEcho),
+    text(/^雷達.*$/i, RadarEcho),
     text(/^AQI.*$/i, AQI),
     text(/^雨量.*$/i, Rain),
     text(/^衛星.*$/i, Satellite),
@@ -29,6 +29,6 @@ module.exports = function App(context) {
     text(/^預報.*$/i, Forecast),
     text(/^.*$/i, () => {
       context.sendText(context.event.text);
-    }) // 
+    })
   ]);
 };
