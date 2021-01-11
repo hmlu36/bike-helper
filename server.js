@@ -17,7 +17,6 @@ const handle = app.getRequestHandler();
 const lineNotify = new LineNotify({
   clientId: process.env.LINE_NOTIFY_CLIENT_ID,
   clientSecret: process.env.LINE_NOTIFY_CLIENT_SECRET,
-  redirectUri: `${process.env.ROOT_PATH}/notify/redirect`,
 });
 
 app.prepare().then(() => {
@@ -31,22 +30,11 @@ app.prepare().then(() => {
     })
   );
 
-  server.get('/notify/new', (req, res) => {
-    const filename = path.join(`${__dirname}/notify.html`);
-    const url = lineNotify.getAuthLink('test');
-    ejs.renderFile(filename, { url }, {}, function(err, str) {
-      if (err) {
-        console.log('err:');
-        console.log(err);
-      }
-      res.send(str);
-    });
-  });
 
   server.get('/notify/redirect', async function(req, res) {
     const code = req.query.code;
     const token = await lineNotify.getToken(code);
-    await lineNotify.sendNotify(token, 'Hello bottender!');
+    await lineNotify.sendNotify(token, '預報');
     res.send('Subscribe successfully. Please close this page.');
   });
 
