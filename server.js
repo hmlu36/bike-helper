@@ -1,6 +1,11 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const { bottender } = require('bottender');
+const lineNotify = require('express-line-notify');
+const config = {
+    clientId: process.env.LINE_NOTIFY_CLIENT_ID,
+    clientSecret: process.env.LINE_NOTIFY_CLIENT_SECRET,
+};
 
 const app = bottender({
     dev: process.env.NODE_ENV !== 'production',
@@ -19,6 +24,9 @@ app.prepare().then(() => {
     };
     server.use(bodyParser.json({ verify }));
     server.use(bodyParser.urlencoded({ extended: false, verify }));
+
+
+    lineNotify(config);
 
     // route for webhook request
     server.all('*', (req, res) => {
