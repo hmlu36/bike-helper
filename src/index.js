@@ -7,7 +7,6 @@ const AQI = require('./actions/AQI');
 const Rain = require('./actions/Rain');
 const Forecast = require('./actions/Forecast');
 const UVI = require('./actions/UVI');
-const lineNotify = require('./lineNotify');
 
 module.exports = function App(context) {
   return router([
