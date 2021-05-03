@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "cross-env NODE_ENV=production node server.js",
-    "debug": "bottender dev start --console",
+    "dev": "bottender dev start --console",
+    "start": "bottender start",
+    "debug": "bottender dev",
     "lint": "eslint . ",
     "test": "jest"
   },
