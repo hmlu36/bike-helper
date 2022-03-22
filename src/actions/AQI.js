@@ -46,7 +46,7 @@ async function composeFlexMessage(context, aqiData) {
                 weight: 'bold',
                 flex: 0,
                 color: ((AQI <= 50) ? '#33C02B' : // 良好
-                    (AQI <= 100) ? '#FFFF00' :    // 中等
+                        (AQI <= 100) ? '#FFFF00' :// 中等
                         (AQI <= 150) ? '#FF4500' :// 警示
                             '#FF3C20'),           // 危險
             },
@@ -71,10 +71,10 @@ async function composeFlexMessage(context, aqiData) {
     // 產生flex message格式
     const flexMessage = {
         type: 'bubble',
-        size: Object.entries(groupByCounty).length > 1 ? 'giga' : 'mega',
+        size: Object.entries(groupByCounty).length > 1 || aqiData.some(a => a.AQI >= 100) ? 'giga' : 'mega',
         styles: {
             body: {
-                'backgroundColor': '#1E1E1E'
+                'backgroundColor': '#1E1E1E30'
             },
         },
         body: {
@@ -86,7 +86,7 @@ async function composeFlexMessage(context, aqiData) {
                 weight: 'bold',
                 align: 'center',
                 size: 'xl',
-                color: '#ffffff'
+                color: '#1E1E1E'
             }, ...AqiObject]
         }
     };
