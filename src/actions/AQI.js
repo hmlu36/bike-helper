@@ -74,7 +74,7 @@ async function composeFlexMessage(context, aqiData) {
         size: Object.entries(groupByCounty).length > 1 || aqiData.some(a => a.AQI >= 100) ? 'giga' : 'mega',
         styles: {
             body: {
-                'backgroundColor': '#1E1E1E70'
+                'backgroundColor': '#1E1E1E'
             },
         },
         body: {
@@ -86,7 +86,7 @@ async function composeFlexMessage(context, aqiData) {
                 weight: 'bold',
                 align: 'center',
                 size: 'xl',
-                color: '#1E1E1E'
+                color: '#FFF'
             }, ...AqiObject]
         }
     };
