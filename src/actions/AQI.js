@@ -71,7 +71,7 @@ async function composeFlexMessage(context, aqiData) {
     // 產生flex message格式
     const flexMessage = {
         type: 'bubble',
-        size: Object.entries(groupByCounty).length > 1 || aqiData.some(a => a.AQI >= 100) ? 'giga' : 'mega',
+        size: (Object.entries(groupByCounty).length > 1 || aqiData.some(a => a.AQI >= 100)) ? 'giga' : 'mega',
         styles: {
             body: {
                 'backgroundColor': '#1E1E1E'
@@ -86,7 +86,7 @@ async function composeFlexMessage(context, aqiData) {
                 weight: 'bold',
                 align: 'center',
                 size: 'xl',
-                color: '#FFF'
+                color: '#ffffff'
             }, ...AqiObject]
         }
     };
