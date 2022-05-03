@@ -38,7 +38,7 @@ module.exports = async function getForecast(context) {
 };
 
 
-module.exports = function DailyForecast() {
+module.exports.DailyForecast = function () {
   countries.forEach(county => {
     forecastData.push(forecastResult.data.records.location.find(item => item.locationName == county));
   });
