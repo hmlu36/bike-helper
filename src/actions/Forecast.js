@@ -25,39 +25,38 @@ module.exports = async function getForecast(context) {
 
   if (Object.keys(forecastData).length > 0) {
     const cityCount = forecastData.map(item => item.locationName);
+
+    let boxMessage = [];
+
     // 輸入城市
     if (Object.entries(cityCount).length == 1) {
-      await composeDetailFlexMessage(context, forecastData);
+      boxMessage = composeDetailFlexMessage(context, forecastData);
     } else {
       // 為輸入城市(全部列出)
-      await composeSummaryFlexMessage(context, forecastData);
+      boxMessage = composeSummaryFlexMessage(context, forecastData);
     }
+    const flexMessage = composeCarouselMessage(boxMessage);
+    await context.sendFlex('天氣預報', flexMessage);
   } else {
     await context.sendText("請輸入正確縣市資料");
   }
 };
 
 
-module.exports.DailyForecast = async function () {
+module.exports.DailyForecastData = async function () {
   const forecastResult = await axios.get(URL.FORECAST);
-  
+
   let forecastData = [];
   countries.forEach(county => {
     forecastData.push(forecastResult.data.records.location.find(item => item.locationName == county));
   });
 
   const boxMessage = getSummaryFlexMessage(forecastData);
-  // 產生flex message格式
-  const flexMessage = {
-    type: "carousel",
-    contents: [...boxMessage]
-  };
-
-  return boxMessage;
+  return composeCarouselMessage(boxMessage);
 }
 
 
-const getSummaryFlexMessage = (forecastData) => {
+const composeSummaryFlexMessage = (forecastData) => {
   return [...Array(3).keys()].map(index => {
     return {
       type: 'bubble',
@@ -108,14 +107,10 @@ const getSummaryFlexMessage = (forecastData) => {
       }
     };
   });
-
-}
-async function composeSummaryFlexMessage(context, forecastData) {
-  //console.log(JSON.stringify(forecastData));
-  sendCarouselMessage(context, getSummaryFlexMessage(forecastData));
 }
 
-async function composeDetailFlexMessage(context, forecastData) {
+
+const composeDetailFlexMessage = (forecastData) => {
   //console.log(JSON.stringify(weatherElement));
 
   // Wx   天氣現象
@@ -128,7 +123,7 @@ async function composeDetailFlexMessage(context, forecastData) {
   //var forecastObject = weatherElement.reduce((obj, item) => Object.assign(obj, { [item.elementName]: item.time }), {});
   //console.log(JSON.stringify(forecastData));
 
-  const boxMessage = [...Array(3).keys()].map(index => {
+  return [...Array(3).keys()].map(index => {
     return {
       type: "bubble",
       styles: {
@@ -194,16 +189,12 @@ async function composeDetailFlexMessage(context, forecastData) {
 
   //console.log(JSON.stringify(boxMessage));
 
-  sendCarouselMessage(context, boxMessage);
 }
 
-async function sendCarouselMessage(context, boxMessage) {
+function composeCarouselMessage(boxMessage) {
   // 產生flex message格式
-  const flexMessage = {
+  return {
     type: "carousel",
     contents: [...boxMessage]
   };
-
-  //console.log(JSON.stringify(flexMessage));
-  await context.sendFlex('天氣預報', flexMessage);
 }

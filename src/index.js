@@ -19,7 +19,7 @@ new CronJob('0,20,40 * * * * *', async () => {
   const dailyForecastData = await Forecast.DailyForecastData();
   console.log(`userid:${process.env.USER_ID}`);
   console.log(dailyForecastData);
-  await client.pushCarouselTemplate(process.env.USER_ID, '天氣預報' ,dailyForecastData);
+  await client.pushFlex(process.env.USER_ID, '天氣預報' ,dailyForecastData);
   console.log("test after");
 }, null, true);
 
