@@ -16,7 +16,8 @@ const client = getClient('line');
 new CronJob('10,20,30 * * * * *', async () => {
   console.log(new Date());
   console.log("test before");
-  await client.pushText(process.env.USER_ID, Forecast.DailyForecast());
+  const dailyForecastData = await Forecast.DailyForecast();
+  await client.pushText(process.env.USER_ID, dailyForecastData);
   console.log("test after");
 }, null, true);
 

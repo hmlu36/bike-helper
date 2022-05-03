@@ -38,7 +38,7 @@ module.exports = async function getForecast(context) {
 };
 
 
-module.exports.DailyForecast = function () {
+module.exports.DailyForecast = async function () {
   const forecastResult = await axios.get(URL.FORECAST);
   countries.forEach(county => {
     forecastData.push(forecastResult.data.records.location.find(item => item.locationName == county));
