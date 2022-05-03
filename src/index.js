@@ -13,10 +13,11 @@ var CronJob = require('cron').CronJob;
 const { getClient } = require('bottender');
 const client = getClient('line');
 
-new CronJob('10,20,30 * * * * *', async () => {
+new CronJob('0,20,40 * * * * *', async () => {
   console.log(new Date());
   console.log("test before");
   const dailyForecastData = await Forecast.DailyForecast();
+  console.log(dailyForecastData);
   await client.pushText(process.env.USER_ID, dailyForecastData);
   console.log("test after");
 }, null, true);
