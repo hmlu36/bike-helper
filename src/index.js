@@ -7,8 +7,11 @@ const AQI = require('./actions/AQI');
 const Rain = require('./actions/Rain');
 const Forecast = require('./actions/Forecast');
 const UVI = require('./actions/UVI');
-const { getClient } = require('bottender');
+
 var CronJob = require('cron').CronJob;
+
+const { getClient } = require('bottender');
+const client = getClient('line');
 
 new CronJob('10,20,30 * * * * *', async () => {
   console.log(new Date());
