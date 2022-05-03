@@ -46,7 +46,14 @@ module.exports.DailyForecast = async function () {
     forecastData.push(forecastResult.data.records.location.find(item => item.locationName == county));
   });
 
-  return getSummaryFlexMessage(forecastData);
+  const boxMessage = getSummaryFlexMessage(forecastData);
+  // 產生flex message格式
+  const flexMessage = {
+    type: "carousel",
+    contents: [...boxMessage]
+  };
+
+  return boxMessage;
 }
 
 
