@@ -51,7 +51,7 @@ module.exports.DailyForecastData = async function () {
     forecastData.push(forecastResult.data.records.location.find(item => item.locationName == county));
   });
 
-  const boxMessage = getSummaryFlexMessage(forecastData);
+  const boxMessage = composeSummaryFlexMessage(forecastData);
   return composeCarouselMessage(boxMessage);
 }
 
