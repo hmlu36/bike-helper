@@ -7,6 +7,12 @@ const AQI = require('./actions/AQI');
 const Rain = require('./actions/Rain');
 const Forecast = require('./actions/Forecast');
 const UVI = require('./actions/UVI');
+var CronJob = require('cron').CronJob;
+
+new CronJob('10,20,30 * * * * *', () => {
+  const datetime = new Date();
+  console.log(datetime);
+}, null, true);
 
 module.exports = function App(context) {
   context.getUserProfile().then((profile) => {
