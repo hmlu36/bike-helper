@@ -14,17 +14,12 @@ const { getClient } = require('bottender');
 const client = getClient('line');
 
 new CronJob('0 30 6 * * *', async () => {
-  console.log(new Date());
-  console.log("test before");
   const dailyForecastData = await Forecast.DailyForecastData();
-  console.log(`userid:${process.env.USER_ID}`);
-  //console.log(dailyForecastData);
+  //console.log(`userid:${process.env.USER_ID}`);
   await client.pushFlex(process.env.USER_ID, '天氣預報', dailyForecastData);
-  console.log("test after");
 }, null, true);
 
 module.exports = function App(context) {
-
   context.getUserProfile().then((profile) => {
     console.log(profile);
   });
