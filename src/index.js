@@ -14,9 +14,11 @@ new CronJob('10,20,30 * * * * *', () => {
 }, null, true);
 
 module.exports = function App(context) {
+  
   context.getUserProfile().then((profile) => {
     console.log(profile);
   });
+
   return router([
     text(/^雷達.*$/i, RadarEcho),
     text(/^AQI.*$/i, AQI),
