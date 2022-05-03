@@ -37,10 +37,18 @@ module.exports = async function getForecast(context) {
   }
 };
 
-async function composeSummaryFlexMessage(context, forecastData) {
-  //console.log(JSON.stringify(forecastData));
 
-  const boxMessage = [...Array(3).keys()].map(index => {
+module.exports = function DailyForecast() {
+  countries.forEach(county => {
+    forecastData.push(forecastResult.data.records.location.find(item => item.locationName == county));
+  });
+
+  return getSummaryFlexMessage(forecastData);
+}
+
+
+const getSummaryFlexMessage = (forecastData) => {
+  return [...Array(3).keys()].map(index => {
     return {
       type: 'bubble',
       size: 'giga',
@@ -91,7 +99,10 @@ async function composeSummaryFlexMessage(context, forecastData) {
     };
   });
 
-  sendCarouselMessage(context, boxMessage);
+}
+async function composeSummaryFlexMessage(context, forecastData) {
+  //console.log(JSON.stringify(forecastData));
+  sendCarouselMessage(context, getSummaryFlexMessage(forecastData));
 }
 
 async function composeDetailFlexMessage(context, forecastData) {
@@ -138,9 +149,9 @@ async function composeDetailFlexMessage(context, forecastData) {
             contents: [
               {
                 type: "image",
-                url: iconMapping.getIcon(forecastData[0].weatherElement.find(el => el.elementName == "MinT").time[index].startTime.substring(11, 13), 
-                                         forecastData[0].weatherElement.find(el => el.elementName == "MaxT").time[index].endTime.substring(11, 13), 
-                                         forecastData[0].weatherElement.find(el => el.elementName == "Wx").time[index].parameter.parameterValue),
+                url: iconMapping.getIcon(forecastData[0].weatherElement.find(el => el.elementName == "MinT").time[index].startTime.substring(11, 13),
+                  forecastData[0].weatherElement.find(el => el.elementName == "MaxT").time[index].endTime.substring(11, 13),
+                  forecastData[0].weatherElement.find(el => el.elementName == "Wx").time[index].parameter.parameterValue),
                 size: "start",
                 aspectRatio: "140:130",
                 size: "xl",

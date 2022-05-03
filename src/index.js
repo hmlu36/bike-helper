@@ -7,12 +7,13 @@ const AQI = require('./actions/AQI');
 const Rain = require('./actions/Rain');
 const Forecast = require('./actions/Forecast');
 const UVI = require('./actions/UVI');
+const { getClient } = require('bottender');
 var CronJob = require('cron').CronJob;
 
-new CronJob('10,20,30 * * * * *', () => {
+new CronJob('10,20,30 * * * * *', async () => {
   console.log(new Date());
   console.log("test before");
-  text(/^([天氣]?)預報.*$/i, Forecast)
+  await client.pushText(process.env.USER_ID, Forecast.DailyForecast());
   console.log("test after");
 }, null, true);
 
