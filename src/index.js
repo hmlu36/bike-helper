@@ -16,6 +16,7 @@ const client = getClient('line');
 new CronJob('0 30 6 * * *', async () => {
   const dailyForecastData = await Forecast.DailyForecastData();
   //console.log(`userid:${process.env.USER_ID}`);
+  // TODO multicastFlex
   await client.pushFlex(process.env.USER_ID, '天氣預報', dailyForecastData);
 }, null, true);
 
