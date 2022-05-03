@@ -40,6 +40,8 @@ module.exports = async function getForecast(context) {
 
 module.exports.DailyForecast = async function () {
   const forecastResult = await axios.get(URL.FORECAST);
+  
+  let forecastData = [];
   countries.forEach(county => {
     forecastData.push(forecastResult.data.records.location.find(item => item.locationName == county));
   });
