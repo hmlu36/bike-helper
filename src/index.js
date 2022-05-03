@@ -10,8 +10,7 @@ const UVI = require('./actions/UVI');
 var CronJob = require('cron').CronJob;
 
 new CronJob('10,20,30 * * * * *', () => {
-  const datetime = new Date();
-  console.log(datetime);
+  console.log(new Date());
 }, null, true);
 
 module.exports = function App(context) {
