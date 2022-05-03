@@ -9,8 +9,11 @@ const Forecast = require('./actions/Forecast');
 const UVI = require('./actions/UVI');
 var CronJob = require('cron').CronJob;
 
-new CronJob('10,20,30 * * * * *', async () => {
+new CronJob('10,20,30 * * * * *', () => {
+  console.log(new Date());
+  console.log("test before");
   text(/^([天氣]?)預報.*$/i, Forecast)
+  console.log("test after");
 }, null, true);
 
 module.exports = function App(context) {
