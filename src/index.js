@@ -15,7 +15,7 @@ const client = getClient('line');
 
 // 早上6:35啟動排程通知天氣預報
 // 因為台灣的timezone +8, 所以用6-8+24 = 22
-new CronJob('0 35 22 * * *', async () => {
+new CronJob('0 46 22 * * *', async () => {
   console.log("job start");
   const dailyForecastData = await Forecast.DailyForecastData();
   //console.log(`userid:${process.env.USER_ID}`);
