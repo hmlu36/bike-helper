@@ -43,7 +43,7 @@ module.exports = async function getForecast(context) {
 };
 
 
-module.exports.DailyForecastData = async function () {
+module.exports.DailyForecastData = async () => {
   const forecastResult = await axios.get(URL.FORECAST);
 
   let forecastData = [];

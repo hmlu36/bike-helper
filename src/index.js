@@ -14,6 +14,7 @@ const { getClient } = require('bottender');
 const client = getClient('line');
 
 new CronJob('0 27 11 * * *', async () => {
+  console.log("job start");
   const dailyForecastData = await Forecast.DailyForecastData();
   //console.log(`userid:${process.env.USER_ID}`);
   // TODO multicastFlex
