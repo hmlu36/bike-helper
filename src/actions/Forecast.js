@@ -30,10 +30,10 @@ module.exports = async function getForecast(context) {
 
     // 輸入城市
     if (Object.entries(cityCount).length == 1) {
-      boxMessage = composeDetailFlexMessage(context, forecastData);
+      boxMessage = composeDetailFlexMessage(forecastData);
     } else {
       // 為輸入城市(全部列出)
-      boxMessage = composeSummaryFlexMessage(context, forecastData);
+      boxMessage = composeSummaryFlexMessage(forecastData);
     }
     const flexMessage = composeCarouselMessage(boxMessage);
     await context.sendFlex('天氣預報', flexMessage);
