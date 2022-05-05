@@ -16,7 +16,9 @@
     "cron": "^1.8.3",
     "cross-env": "^7.0.3",
     "ejs": "^3.1.7",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "heroku": "^7.33.3",
+    "heroku-cli": "^6.15.31"
   },
   "devDependencies": {
     "eslint": "^8.11.0",
