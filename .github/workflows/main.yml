@@ -11,6 +11,8 @@ jobs:
       #- uses: akhileshns/heroku-deploy@v3.0.0
       name: Wait for Render Deployment
       uses: bounceapp/render-action@0.2.0
+      run : npm install
+            npm start 
         with:
           #heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           #heroku_app_name: "bike-helper"
