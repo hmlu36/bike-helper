@@ -12,6 +12,6 @@ jobs:
         uses: bounceapp/render-action@0.2.0
         with:
           email: "hmlu36@gmail.com"
-          password: ${{ secrets.RENDER_PASSWORD }}
+          password: ${{ secrets.RENDER_API_KEY }}
           token: ${{ secrets.GITHUB_TOKEN }}
           service-id: srv-cc61a3la49936rk9l9og
